@@ -5,7 +5,7 @@ class Product {
   //slug;
   final int id;
 
-  //final Color color;
+  
 
   Product({
     //required this.color,
@@ -23,48 +23,48 @@ List <Product> product =[
    zaman: 'Bugün bitiyor', 
    desc: 'Haftanın fırstalarını kaçırma', 
    id: 1,
-   //slug: 'google',
-  // color: Color(0xFFF8FAF8),
+   //slug: '',
+  
    ),
    Product(
   image: 'assets/images/bim.jpg',
    zaman: 'Bugün bitiyor', 
    desc: 'aldın aldın', 
    id: 2,
-    //slug: 'youtube',
-  // color: Color(0xFFF8FAF8),
+    //slug: '',
+  
    ),
    Product(
   image: 'assets/images/bim.jpg',
    zaman: 'Bugün bitiyor', 
    desc: 'Haftanın fırstalarını kaçırma', 
    id: 3,
-   // slug: 'twitter',
-  // color: Color(0xFFF8FAF8),
+   // slug: '',
+  
    ),
    Product(
   image: 'assets/images/bim.jpg',
    zaman: 'Bugün bitiyor', 
    desc: 'Aldın aldın', 
    id: 4,
-    //slug: 'news',
-   //color: Color(0xFF05B305),
+    //slug: '',
+   
    ),
    Product(
   image: 'assets/images/bim.jpg',
    zaman: 'Bugün bitiyor', 
    desc: 'Haftanın fırstalarını kaçırma', 
    id: 5,
-    //slug: 'eksi',
-   //color: Color(0xFFF8FAF8),
+    //slug: '',
+   
    ),
    Product(
   image: 'assets/images/bim.jpg',
    zaman: 'Bugün bitiyor', 
    desc: 'Haftanın fırstalarını kaçırma', 
    id: 6,
-    //slug: 'reddit',
-   //color: Color(0xFFF8FAF8),
+    //slug: '',
+   
    ),
    Product(
   image: 'assets/images/bim.jpg',
@@ -72,15 +72,15 @@ List <Product> product =[
    desc: 'Haftanın fırstalarını kaçırma', 
    id: 7,
     //slug: 'reddit',
-   //color: Color(0xFFF8FAF8),
+   
    ),
    Product(
   image: 'assets/images/bim.jpg',
    zaman: 'Bugün bitiyor', 
    desc: 'Haftanın fırstalarını kaçırma', 
    id: 7,
-    //slug: 'reddit',
-   //color: Color(0xFFF8FAF8),
+    //slug: '',
+   
    ),
 ];
 
