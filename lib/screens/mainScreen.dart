@@ -8,17 +8,9 @@ class MainScreens extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-      appBar:PreferredSize(
+      appBar: PreferredSize(
         preferredSize: Size.fromHeight(100.0),
-        child: AppBar(
-        backgroundColor: Colors.amber.shade700,
-        title: Text("Birindirim"),
-        centerTitle: true,
-        leading: IconButton(onPressed: (){}, icon: Icon(Icons.menu))
-        
-      
-          ),
+        child: AppBar(backgroundColor: Colors.amber.shade700, title: Text("Birindirim"), centerTitle: true, leading: IconButton(onPressed: () {}, icon: Icon(Icons.menu))),
       ),
       body: BodyView(),
     );

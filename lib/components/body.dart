@@ -13,147 +13,110 @@ class BodyView extends StatefulWidget {
 }
 
 class _BodyViewState extends State<BodyView> {
- /*  int _selectedIndex = 0;
-  static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List _widgetOptions = [
-    Text(
-      'Index 0: Popüller',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Markalar',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: Fırsatlar',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 3: Kuponlar',
-      style: optionStyle,
-    ),
-  ]; */
-
-  /* void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  } */
-
-
+  int _currenIndex = 0;
   @override
   Widget build(BuildContext context) {
+    List<Widget> pageItems = [
+      //ümit
+      homeView(),
+      const Center(
+        child: Text("merhaba"),
+      ),
+
+
+      //ben 
+      const Center(
+        child: Text("naslsn"),
+      ),
+      const Center(
+        child: Text("iyiim"),
+      ),
+    ];
     return Scaffold(
-      body: Column(
-        
-        children: [
-          
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
-              child: GridView.builder(
-                itemCount: product.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    // mainAxisSpacing: kDefaultPaddin,
-                    childAspectRatio: 0.60),
-
-                    
-                //diğer sayfaya yönlendirme işlemi burda oluyor
-                itemBuilder: (context, index) => itemCard(
-                    product: product[index],
-                    press: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                DetailScreens(product: product[index])))), 
-              ),
-            ),
-          ),
-        ],
-      ),
-
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){},
-        child: Icon(Icons.dark_mode_rounded),
-        backgroundColor: Colors.amber.shade800,
-        
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.amber.shade600,
-        shape: CircularNotchedRectangle(),
-        notchMargin: 6,
-        child: Row(
-          
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            buildTabItem(
-              index: 0,
-              baslik: Text("Popüler",style: TextStyle(color: Colors.red),)
-            ),
-            buildTabItem(
-              index: 1,
-              baslik: Text("Markalar",style: TextStyle(color: Colors.white),)
-              
-            
-            ),
-            buildTabItem(
-              index: 2,
-              baslik: Text("Fırsatlar",style: TextStyle(color: Colors.white),)
-              
-            ),
-            buildTabItem(
-              index: 3,
-              baslik: Text("Kuponlar",style: TextStyle(color: Colors.white),)
-            ),
-          ],
+      body: PageView.builder(
+          itemCount: pageItems.length,
+          onPageChanged: (index) {
+            setState(() {
+              _currenIndex = index;
+            });
+          },
+          itemBuilder: (context, index) {
+            return pageItems[_currenIndex];
+          }),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 30),
+        child: FloatingActionButton(
+          onPressed: () {},
+          child:   Icon( Icons.dark_mode_rounded),
+          backgroundColor: Colors.amber.shade800,
         ),
       ),
-      /* bottomNavigationBar: BottomNavigationBar(
-      
-        items: const <BottomNavigationBarItem> [
-        
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: SizedBox(
-              child: Text("Popüller"),
+            backgroundColor: Colors.orange,
+            icon: Text(
+              "Popüler",
+              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 1),
             ),
             label: "",
-            
           ),
           BottomNavigationBarItem(
-         icon: SizedBox(
-              child: Text("Markalar"),
-            ),
-         label: ""
-          ),
+              backgroundColor: Colors.orange,
+              icon: Text("Markalar", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 1)),
+              label: ""),
           BottomNavigationBarItem(
-           icon: SizedBox(
-              child: Text("Fırsatlar"),
-            ),
-            label: ""
-          ),
+              backgroundColor: Colors.orange,
+              icon: Text("Fırsatlar", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 1)),
+              label: ""),
           BottomNavigationBarItem(
-            icon: SizedBox(
-              child: Text("Kuponlar"),
-            ),
+            backgroundColor: Colors.orange,
+            icon: Text("Kuponlar", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 1)),
             label: "",
-            
           ),
         ],
-        currentIndex: _selectedIndex,
+        currentIndex: _currenIndex,
         selectedItemColor: Colors.amber[800],
-        onTap: _onItemTapped,
-      ) , */
+        onTap: (index) {
+          setState(() {
+            _currenIndex = index;
+          });
+        },
+      ),
     );
   }
-  Widget buildTabItem ({
- int index,
- Widget  baslik,// Icon icon olunca sadece icon türünde değişken verebiliyorsun ama widget  ile her türde değiişken verirsin 
+
+  Column homeView() {
+    return Column(
+      children: [
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
+            child: GridView.builder(
+              itemCount: product.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 0.60,
+              ),
+              itemBuilder: (context, index) => itemCard(
+                  product: product[index],
+                  press: () => Navigator.push(context, MaterialPageRoute(builder: (context) => DetailScreens(product: product[index])))),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget buildTabItem({
+    int index,
+    Widget baslik, // Icon icon olunca sadece icon türünde değişken verebiliyorsun ama widget  ile her türde değiişken verirsin
   }) {
-    return IconButton(onPressed: (){}, 
-    icon: baslik, 
-    iconSize: 56,);
+    return IconButton(
+      onPressed: () {},
+      icon: baslik,
+      iconSize: 56,
+    );
   }
 }
