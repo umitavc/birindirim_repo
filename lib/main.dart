@@ -9,6 +9,7 @@ class MyApp extends StatelessWidget {
   const MyApp({Key key}) : super(key: key);
 //"hasan-deneme"
   // This widget is the root of your application.
+  //conflict-2
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
