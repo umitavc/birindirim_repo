@@ -17,11 +17,11 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(),
       home: MainScreens(),
- 
+      //değişiklik
+
       //conflict
- 
+
       ///sfafasdfasdfajkajlfkja
- 
     );
   }
 }
