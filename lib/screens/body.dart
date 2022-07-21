@@ -1,6 +1,7 @@
 import 'package:birindirm_deneme/components/constant.dart';
 import 'package:birindirm_deneme/components/item_Card.dart';
 import 'package:birindirm_deneme/public/product.dart';
+import 'package:birindirm_deneme/screens/populer_view/view/populer_view.dart';
 import 'package:flutter/material.dart';
 
 import '../components/detalis_screens.dart';
@@ -19,7 +20,7 @@ class _BodyViewState extends State<BodyView> {
   Widget build(BuildContext context) {
     List<Widget> pageItems = [
       //ümit
-      homeView(),
+      PopularView(),
       markalarView(),
 
       //kerem
@@ -76,26 +77,6 @@ class _BodyViewState extends State<BodyView> {
           });
         },
       ),
-    );
-  }
-
-  Column homeView() {
-    return Column(
-      children: [
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
-            child: GridView.builder(
-              itemCount: product.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 0.60,
-              ),
-              itemBuilder: (context, index) => itemCard(product: product[index], press: () => Navigator.push(context, MaterialPageRoute(builder: (context) => DetailScreens(product: product[index])))),
-            ),
-          ),
-        ),
-      ],
     );
   }
 
