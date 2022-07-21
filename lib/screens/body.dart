@@ -3,7 +3,8 @@ import 'package:birindirm_deneme/components/item_Card.dart';
 import 'package:birindirm_deneme/public/product.dart';
 import 'package:flutter/material.dart';
 
-import 'detalis_screens.dart';
+import '../components/detalis_screens.dart';
+import 'markalar.dart';
 
 class BodyView extends StatefulWidget {
   const BodyView({Key key}) : super(key: key);
@@ -19,12 +20,9 @@ class _BodyViewState extends State<BodyView> {
     List<Widget> pageItems = [
       //ümit
       homeView(),
-      const Center(
-        child: Text("merhaba"),
-      ),
+      markalarView(),
 
-
-      //ben 
+      //kerem
       const Center(
         child: Text("naslsn"),
       ),
@@ -47,7 +45,7 @@ class _BodyViewState extends State<BodyView> {
         padding: const EdgeInsets.only(bottom: 30),
         child: FloatingActionButton(
           onPressed: () {},
-          child:   Icon( Icons.dark_mode_rounded),
+          child: Icon(Icons.dark_mode_rounded),
           backgroundColor: Colors.amber.shade800,
         ),
       ),
@@ -62,14 +60,8 @@ class _BodyViewState extends State<BodyView> {
             ),
             label: "",
           ),
-          BottomNavigationBarItem(
-              backgroundColor: Colors.orange,
-              icon: Text("Markalar", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 1)),
-              label: ""),
-          BottomNavigationBarItem(
-              backgroundColor: Colors.orange,
-              icon: Text("Fırsatlar", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 1)),
-              label: ""),
+          BottomNavigationBarItem(backgroundColor: Colors.orange, icon: Text("Markalar", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 1)), label: ""),
+          BottomNavigationBarItem(backgroundColor: Colors.orange, icon: Text("Fırsatlar", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 1)), label: ""),
           BottomNavigationBarItem(
             backgroundColor: Colors.orange,
             icon: Text("Kuponlar", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 1)),
@@ -99,9 +91,7 @@ class _BodyViewState extends State<BodyView> {
                 crossAxisCount: 2,
                 childAspectRatio: 0.60,
               ),
-              itemBuilder: (context, index) => itemCard(
-                  product: product[index],
-                  press: () => Navigator.push(context, MaterialPageRoute(builder: (context) => DetailScreens(product: product[index])))),
+              itemBuilder: (context, index) => itemCard(product: product[index], press: () => Navigator.push(context, MaterialPageRoute(builder: (context) => DetailScreens(product: product[index])))),
             ),
           ),
         ),
