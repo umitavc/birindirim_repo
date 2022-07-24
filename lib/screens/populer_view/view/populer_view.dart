@@ -1,4 +1,4 @@
-import 'package:birindirm_deneme/components/item_Card.dart';
+import 'package:birindirm_deneme/components/populer_item_Card.dart';
 import 'package:birindirm_deneme/core/utils/enums/fetch_status_enum.dart';
 import 'package:birindirm_deneme/screens/populer_view/viewmodel/popular_viewmodel.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +33,7 @@ class _PopularViewState extends State<PopularView> {
                       crossAxisCount: 2,
                       childAspectRatio: 0.60,
                     ),
-                    itemBuilder: (context, index) => ItemCard(
+                    itemBuilder: (context, index) => PopulerItemCard(
                       product: context.read<HomViewModel>().modelList.elementAt(index),
                     ),
                   );
