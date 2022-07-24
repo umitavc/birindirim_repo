@@ -1,11 +1,11 @@
 import 'package:birindirm_deneme/components/constant.dart';
-import 'package:birindirm_deneme/components/item_Card.dart';
+import 'package:birindirm_deneme/components/populer_item_Card.dart';
 import 'package:birindirm_deneme/public/product.dart';
 import 'package:birindirm_deneme/screens/populer_view/view/populer_view.dart';
 import 'package:flutter/material.dart';
 
-import '../components/detalis_screens.dart';
-import 'markalar.dart';
+import '../components/details_screens.dart';
+import 'brands_view/view/brands_view.dart';
 
 class BodyView extends StatefulWidget {
   const BodyView({Key key}) : super(key: key);
@@ -21,7 +21,7 @@ class _BodyViewState extends State<BodyView> {
     List<Widget> pageItems = [
       //ümit
       PopularView(),
-      markalarView(),
+      BrandsView(),
 
       //kerem
       const Center(

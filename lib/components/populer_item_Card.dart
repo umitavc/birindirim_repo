@@ -2,10 +2,10 @@ import 'package:birindirm_deneme/components/constant.dart';
 import 'package:birindirm_deneme/screens/populer_view/model/product_model.dart';
 import 'package:flutter/material.dart';
 
-class ItemCard extends StatelessWidget {
+class PopulerItemCard extends StatelessWidget {
   final ProductModel product;
   final VoidCallback press;
-  const ItemCard({
+  const PopulerItemCard({
     Key key,
     this.product,
     this.press,
