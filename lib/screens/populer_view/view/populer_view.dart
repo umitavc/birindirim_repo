@@ -1,4 +1,4 @@
-import 'package:birindirm_deneme/components/populer_item_Card.dart';
+import 'package:birindirm_deneme/components/widget_card/populer_item_Card.dart';
 import 'package:birindirm_deneme/core/utils/enums/fetch_status_enum.dart';
 import 'package:birindirm_deneme/screens/populer_view/viewmodel/popular_viewmodel.dart';
 import 'package:flutter/material.dart';

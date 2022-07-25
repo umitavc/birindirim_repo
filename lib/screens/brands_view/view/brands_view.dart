@@ -5,7 +5,7 @@ import 'package:birindirm_deneme/screens/brands_view/viewmodel/brands_view_model
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../components/brands_item_Card.dart';
+import '../../../components/widget_card/brands_item_Card.dart';
 import '../../../core/utils/enums/fetch_status_enum.dart';
 
 class BrandsView extends StatefulWidget {

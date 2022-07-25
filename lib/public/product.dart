@@ -1,102 +1,21 @@
 import 'package:flutter/material.dart';
 
-class Product {
-  final String image, zaman, desc, logo, name, altbaslik;
-  //slug;
-  final int id;
+class Hakkimizda{
+   String aciklama;
+   final int id;
 
-  Product({
-    //required this.color,
-    this.image,
-    this.zaman,
-    this.desc,
-    this.id,
-    this.logo,
-    this.name,
-    this.altbaslik,
-    //required this.slug
+  Hakkimizda({
+     this.aciklama,
+     this.id,
   });
 }
 
-List<Product> product = [
-  Product(
-    image: 'assets/images/bim.jpg',
-    zaman: 'Bugün bitiyor',
-    desc: 'Haftanın fırstalarını kaçırma',
+
+
+List <Hakkimizda> hakkimizda=[
+  Hakkimizda(
     id: 1,
-    logo: 'assets/images/bimlogo.jpg',
-    name: "bim",
-    altbaslik: "Broşüleri görüntüle",
-    //slug: '',
-  ),
-  Product(
-    image: 'assets/images/bim.jpg',
-    zaman: 'Bugün bitiyor',
-    desc: 'aldın aldın',
-    id: 2,
-    logo: 'assets/images/bimlogo.jpg',
-    name: "bim",
-    altbaslik: "Broşüleri görüntüle",
-    //slug: '',
-  ),
-  Product(
-    image: 'assets/images/bim.jpg',
-    zaman: 'Bugün bitiyor',
-    desc: 'Haftanın fırstalarını kaçırma',
-    id: 3,
-    logo: 'assets/images/bimlogo.jpg',
-    name: "bim",
-    altbaslik: "Broşüleri görüntüle",
-    // slug: '',
-  ),
-  Product(
-    image: 'assets/images/bim.jpg',
-    zaman: 'Bugün bitiyor',
-    desc: 'Aldın aldın',
-    id: 4,
-    logo: 'assets/images/bimlogo.jpg',
-    name: "bim",
-    altbaslik: "Broşüleri görüntüle",
-    //slug: '',
-  ),
-  Product(
-    image: 'assets/images/bim.jpg',
-    zaman: 'Bugün bitiyor',
-    desc: 'Haftanın fırstalarını kaçırma',
-    id: 5,
-    logo: 'assets/images/bimlogo.jpg',
-    name: "bim",
-    altbaslik: "Broşüleri görüntüle",
-    //slug: '',
-  ),
-  Product(
-    image: 'assets/images/bim.jpg',
-    zaman: 'Bugün bitiyor',
-    desc: 'Haftanın fırstalarını kaçırma',
-    id: 6,
-    logo: 'assets/images/bimlogo.jpg',
-    name: "bim",
-    altbaslik: "Broşüleri görüntüle",
-    //slug: '',
-  ),
-  Product(
-    image: 'assets/images/bim.jpg',
-    zaman: 'Bugün bitiyor',
-    desc: 'Haftanın fırstalarını kaçırma',
-    id: 7,
-    logo: 'assets/images/bimlogo.jpg',
-    name: "bim",
-    altbaslik: "Broşüleri görüntüle",
-    //slug: 'reddit',
-  ),
-  Product(
-    image: 'assets/images/bim.jpg',
-    zaman: 'Bugün bitiyor',
-    desc: 'Haftanın fırstalarını kaçırma',
-    id: 7,
-    logo: 'assets/images/bimlogo.jpg',
-    name: "bim",
-    altbaslik: "Broşüleri görüntüle",
-    //slug: '',
-  ),
+   
+    aciklama:'1998 yılında "En yeni iletişim ve bilgisayar teknolojilerini kullanarak müşterilerine dünya standartlarında çözümler sunmak" ilkesiyle yola çıkan isimtescil.net, geçen 16 yıllık süreçte Dünya ve Türkiye’ye, en büyük domain ve hosting firmalarından biri olmayı başarmıştır.',
+    ),
 ];
