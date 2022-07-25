@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'drawer_view/drawerView.dart';
 import 'body.dart';
 
 class MainScreens extends StatelessWidget {
@@ -10,8 +11,12 @@ class MainScreens extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(100.0),
-        child: AppBar(backgroundColor: Colors.amber.shade700, title: Text("Birindirim"), centerTitle: true, leading: IconButton(onPressed: () {}, icon: Icon(Icons.menu))),
+        child: AppBar(backgroundColor: Colors.amber.shade700, title: Text("Birindirim"), 
+        centerTitle: true, 
+        
+        ),
       ),
+      drawer: DrawerWidget(),
       body: BodyView(),
     );
   }

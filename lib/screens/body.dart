@@ -1,5 +1,5 @@
 import 'package:birindirm_deneme/components/constant.dart';
-import 'package:birindirm_deneme/components/populer_item_Card.dart';
+import 'package:birindirm_deneme/components/widget_card/populer_item_Card.dart';
 import 'package:birindirm_deneme/public/product.dart';
 import 'package:birindirm_deneme/screens/populer_view/view/populer_view.dart';
 import 'package:flutter/material.dart';

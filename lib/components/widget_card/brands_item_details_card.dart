@@ -2,8 +2,8 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 import 'package:flutter/material.dart';
-import '../screens/brands_view/model/brandsDetails_model.dart';
-import 'constant.dart';
+import '../../screens/brands_view/model/brandsDetails_model.dart';
+import '../constant.dart';
 
 class BrandsItemDetailsCard extends StatelessWidget {
   final BrandsDetailsModel product;

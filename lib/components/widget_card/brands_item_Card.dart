@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
-import '../screens/brands_view/model/brands_model.dart';
-import '../screens/brands_view/view/brands_detail_view.dart';
+import '../../screens/brands_view/model/brands_model.dart';
+import '../../screens/brands_view/view/brands_detail_view.dart';
 
 
 class BrandsCard extends StatelessWidget {
@@ -20,11 +20,12 @@ class BrandsCard extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ListTile(
+
                     title: Text(product.title),
                     subtitle: Text(product.link),
                     leading: SizedBox(child: Image.network(product.logo)),
                     onTap: (){
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) =>BrandsdetailScreenView()));
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) =>BrandsdetailScreenView(topic: product.title,)));
                     },
                   ),
                 ),
