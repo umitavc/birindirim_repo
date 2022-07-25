@@ -9,10 +9,17 @@ class MainScreens extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(100.0),
-        child: AppBar(backgroundColor: Colors.amber.shade700, title: Text("Birindirim"), centerTitle: true, leading: IconButton(onPressed: () {}, icon: Icon(Icons.menu))),
+        preferredSize:const  Size.fromHeight(100.0),
+        child: AppBar(
+            backgroundColor: Colors.amber.shade700,
+            title: const Text(
+              "Birindirim",
+              style: TextStyle(color: Colors.white),
+            ),
+            centerTitle: true,
+            leading: IconButton(onPressed: () {}, icon: const Icon(Icons.menu, color: Colors.white))),
       ),
-      body: BodyView(),
+      body: const BodyView(),
     );
   }
 }
