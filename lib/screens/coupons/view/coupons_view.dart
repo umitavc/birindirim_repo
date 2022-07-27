@@ -5,6 +5,7 @@ import 'package:birindirm_deneme/screens/coupons/model/coupons_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../core/init/locator.dart';
 import '../view_model/coupons_view_model.dart';
 
 class CouponsView extends StatefulWidget {
@@ -15,12 +16,10 @@ class CouponsView extends StatefulWidget {
 }
 
 class _CouponsViewState extends State<CouponsView> {
-  CouponsViewModel viewModel;
-
   @override
   void initState() {
     super.initState();
-    viewModel = CouponsViewModel();
+
     context.read<CouponsViewModel>().fetcAllCoupoins();
   }
 
@@ -142,7 +141,7 @@ class _CouponsViewState extends State<CouponsView> {
           primary: Colors.blue,
         ),
         onPressed: () {
-          viewModel.goToLink(link);
+          locator<CouponsViewModel>().goToLink(link);
         },
         child: const Center(child: Text("Siteye Git", style: TextStyle(color: Colors.white))));
   }

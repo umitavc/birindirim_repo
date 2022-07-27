@@ -11,6 +11,7 @@ class CouponsViewModel extends ChangeNotifier {
   }
 
   void fetcAllCoupoins() async {
+    if (modelList.isNotEmpty) return;
     _service = CouponsService();
     changeIsloading();
     final list = await _service.fetchAllOpportinies();
