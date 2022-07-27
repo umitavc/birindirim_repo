@@ -16,7 +16,7 @@ class CouponsModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['image'] = image;
     data['brand'] = brand;
     data['title'] = title;

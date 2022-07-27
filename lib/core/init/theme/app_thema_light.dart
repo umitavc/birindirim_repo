@@ -18,6 +18,8 @@ class AppThemeLight extends AppThema with ILightTheme {
         textTheme: textTheme(),
         appBarTheme: ThemeData.light().appBarTheme.copyWith(
               color: Colors.transparent,
+              titleTextStyle: const TextStyle(color: Colors.white, fontSize: 18, letterSpacing: 1),
+              iconTheme: const IconThemeData(color: Colors.white),
               elevation: 0,
             ),
       );

@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:birindirm_deneme/core/constant/app/image_constant.dart';
+import 'package:birindirm_deneme/core/constant/app/string_constant.dart';
 import 'package:birindirm_deneme/core/extension/context_extension.dart';
 import 'package:birindirm_deneme/screens/coupons/model/coupons_model.dart';
 import 'package:flutter/material.dart';
@@ -59,6 +60,7 @@ class _CouponsViewState extends State<CouponsView> {
   }
 
   Column gridViewColumn(BuildContext context, CouponsModel model) {
+    
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -77,7 +79,7 @@ class _CouponsViewState extends State<CouponsView> {
         Expanded(
           child: buildTextDescription(model),
         ),
-        fetchButton(model.link)
+        fetchButton(model.link.launchToString)
       ],
     );
   }

@@ -1,5 +1,7 @@
+// ignore_for_file: avoid_print, deprecated_member_use
+
 import 'package:birindirm_deneme/screens/coupons/service/coupons_services.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CouponsViewModel extends ChangeNotifier {
@@ -21,13 +23,14 @@ class CouponsViewModel extends ChangeNotifier {
   }
 
   Future<void> goToLink(String link) async {
-    var encoded = Uri.encodeFull(link);
-    print("link" + encoded);
 
-    if (await canLaunch(encoded)) {
-      await launch(encoded);
-    } else {
-      throw "Could not launch $encoded";
+    try {
+      var encoded = Uri.encodeFull(link);
+      if (await canLaunch(encoded)) {
+        await launch(encoded);
+      }
+    } catch (e) {
+      print("hata $e");
     }
   }
 }

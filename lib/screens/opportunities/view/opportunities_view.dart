@@ -19,6 +19,7 @@ class _OpportunitiesViewState extends State<OpportunitiesView> {
   @override
   void initState() {
     super.initState();
+
     viewModel = OpportunitiesViewModel();
     context.read<OpportunitiesViewModel>().fetcAllOpportunities();
   }
@@ -29,15 +30,15 @@ class _OpportunitiesViewState extends State<OpportunitiesView> {
         body: context.watch<OpportunitiesViewModel>().isLoading
             ? const Center(child: CircularProgressIndicator())
             : ListView.builder(
-                itemCount: context.watch<OpportunitiesViewModel>().modelList.length,
+                itemCount: context.watch<OpportunitiesViewModel>().modelList?.length ?? 0,
                 itemBuilder: (context, index) {
                   OpportunitiesModel model = OpportunitiesModel.fromJson(context.watch<OpportunitiesViewModel>().modelList[index]);
-                  return withContainer(context, model);
+                  return _withContainer(context, model);
                 },
               ));
   }
 
-  Widget withContainer(BuildContext context, OpportunitiesModel model) {
+  Widget _withContainer(BuildContext context, OpportunitiesModel model) {
     return Container(
       padding: context.paddingLow,
       height: context.dymaicWidth(0.5),
@@ -126,15 +127,14 @@ class _OpportunitiesViewState extends State<OpportunitiesView> {
 
   Widget oldPriceText(BuildContext context, OpportunitiesModel model) {
     return PriceTextOpportunities(
-      text: "${model.oldPrice}",
+      text: model.oldPrice,
       style: context.textThem.bodyMedium.copyWith(color: Colors.grey, decoration: TextDecoration.lineThrough, fontWeight: FontWeight.w700),
     );
   }
 }
 
 Widget newPriceText(BuildContext context, OpportunitiesModel model) {
-  return PriceTextOpportunities(
-      text: "${model.newPrice}", style: context.textThem.bodyMedium.copyWith(color: Colors.orange, fontWeight: FontWeight.w700));
+  return PriceTextOpportunities(text: model.newPrice, style: context.textThem.bodyMedium.copyWith(color: Colors.orange, fontWeight: FontWeight.w700));
 }
 
 Widget fetchRowIcon(BuildContext context) {
