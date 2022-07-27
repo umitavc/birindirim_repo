@@ -32,7 +32,7 @@ class _CouponsViewState extends State<CouponsView> {
 
   Widget fetchBodyGridview(BuildContext context) {
     return GridView.builder(
-        itemCount: context.watch<CouponsViewModel>().modelList.length,
+        itemCount: context.watch<CouponsViewModel>().couponList?.length ?? 0,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           mainAxisSpacing: 20,
@@ -40,10 +40,9 @@ class _CouponsViewState extends State<CouponsView> {
           childAspectRatio: 2 / 3.6,
         ),
         itemBuilder: (context, index) {
-          CouponsModel model = CouponsModel.fromJson(context.watch<CouponsViewModel>().modelList[index]);
           return Padding(
             padding: const EdgeInsets.all(8.0),
-            child: gridviewCardItem(context, model),
+            child: gridviewCardItem(context, context.watch<CouponsViewModel>().couponList.elementAt(index)),
           );
         });
   }
