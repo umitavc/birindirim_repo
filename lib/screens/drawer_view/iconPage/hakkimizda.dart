@@ -19,7 +19,7 @@ class HakkimizdaView extends StatelessWidget {
         title: Text('Hakkımızda'),
       ),
 
-      body: Container()
+      body: Container(child: Text("buraya hakkımızda kısmı gelecek"),)
     );
   }
 }

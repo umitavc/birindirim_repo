@@ -4,12 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-
-
-
 class DrawerWidget extends StatelessWidget {
-   DrawerWidget({Key key}) : super(key: key);
-final padding =EdgeInsets.symmetric(horizontal: 20);
+  DrawerWidget({Key key}) : super(key: key);
+  final padding = EdgeInsets.symmetric(horizontal: 20);
+  //final urlImage = "https://fidansepetim.com/uploads/p/p/3-Yas-Asili-Granny-Smith-Elma-Fidani-Yesil-Mayhos_1.jpg";
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -18,25 +16,53 @@ final padding =EdgeInsets.symmetric(horizontal: 20);
         child: ListView(
           padding: padding,
           children: [
-             const SizedBox(height: 48,),
+            Container(
+              child: Padding(
+                padding: const EdgeInsets.all(32.0),
+                child: Column(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: SizedBox.fromSize(
+                        size: Size.fromRadius(64),
+                        child: Image.asset(
+                          "assets/images/elma.jpg",
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 48,
+            ),
             builMenuItem(
-              text:'Anasayfa',
+              text: 'Anasayfa',
               icon: Icons.home,
               onClicked: () => selectedItem(context, 0),
             ),
-            SizedBox(height: 16,),
+            SizedBox(
+              height: 16,
+            ),
             builMenuItem(
-              text:'Hakkımızda',
+              text: 'Hakkımızda',
               icon: Icons.wrap_text,
               onClicked: () => selectedItem(context, 1),
             ),
-            SizedBox(height: 16,),
+            SizedBox(
+              height: 16,
+            ),
             builMenuItem(
-              text:'Değerlendir/Puan Ver!',
+              text: 'Değerlendir/Puan Ver!',
               icon: Icons.thumb_up,
-            ),SizedBox(height: 16,),
+            ),
+            SizedBox(
+              height: 16,
+            ),
             builMenuItem(
-              text:'Arkadaşınla Paylaş',
+              text: 'Arkadaşınla Paylaş',
               icon: Icons.share,
             ),
           ],
@@ -53,25 +79,28 @@ final padding =EdgeInsets.symmetric(horizontal: 20);
     final color = Colors.white;
     final hoverColor = Colors.white70;
     return ListTile(
-      leading:  Icon(icon, color: color,),
-      title: Text(text,style: TextStyle(color: color),),
+      leading: Icon(
+        icon,
+        color: color,
+      ),
+      title: Text(
+        text,
+        style: TextStyle(color: color),
+      ),
       hoverColor: hoverColor,
       onTap: onClicked,
     );
   }
 
-  void selectedItem(BuildContext context,int index){
+  void selectedItem(BuildContext context, int index) {
     switch (index) {
       case 0:
-        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MainScreens()));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => MainScreens()));
         break;
 
-        case 1:
-        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>HakkimizdaView()));
+      case 1:
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => HakkimizdaView()));
         break;
-      
-
-      
     }
   }
 }
