@@ -1,11 +1,12 @@
-import 'package:birindirm_deneme/components/constant.dart';
-import 'package:birindirm_deneme/public/product.dart';
+
+import 'package:birindirm_deneme/core/utils/enums/fetch_status_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../components/widget_card/brands_item_details_card.dart';
-import '../../../core/utils/enums/fetch_status_enum.dart';
-import '../viewmodel/brandsDetails_view_model.dart';
+import '../viewmodel/brands_detail_view.dart';
+
+
 
 class BrandsdetailScreenView extends StatelessWidget {
   final String topic;

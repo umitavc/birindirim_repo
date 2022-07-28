@@ -3,16 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class DetailScreens extends StatefulWidget {
-  const DetailScreens({Key key,  }) : super(key: key);
+class BrandsDetailScreen extends StatefulWidget {
+  const BrandsDetailScreen({Key key,  }) : super(key: key);
 
   @override
-  State<DetailScreens> createState() => _DetailScreensState();
+  State<BrandsDetailScreen> createState() => _BrandsDetailScreen();
 }
 
-class _DetailScreensState extends State<DetailScreens> {
+class _BrandsDetailScreen extends State<BrandsDetailScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(title:Text("markalar")),
+    );
   }
 }

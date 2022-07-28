@@ -7,14 +7,15 @@ import '../constant.dart';
 
 class BrandsItemDetailsCard extends StatelessWidget {
   final BrandsDetailsModel product;
-  const BrandsItemDetailsCard({Key key, this.product}) : super(key: key);
+  final VoidCallback press;
+  const BrandsItemDetailsCard({Key key, this.product, this.press}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: InkWell(
-        //onTap: press,
+        onTap: press,
         child: Material(
           color: kButtonColor,
           borderRadius: BorderRadius.circular(16),

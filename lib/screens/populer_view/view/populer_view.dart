@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../components/constant.dart';
+import '../../../components/populer_details_view.dart';
 
 class PopularView extends StatefulWidget {
   const PopularView({Key key}) : super(key: key);
@@ -35,6 +36,7 @@ class _PopularViewState extends State<PopularView> {
                     ),
                     itemBuilder: (context, index) => PopulerItemCard(
                       product: context.read<HomViewModel>().modelList.elementAt(index),
+                       press: () => Navigator.push(context, MaterialPageRoute(builder: (context) =>PopulerDetailScreens())),
                     ),
                   );
                 },
