@@ -6,6 +6,7 @@ import 'package:birindirm_deneme/screens/coupons/model/coupons_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../core/init/locator.dart';
 import '../view_model/coupons_view_model.dart';
 
 class CouponsView extends StatefulWidget {
@@ -16,25 +17,25 @@ class CouponsView extends StatefulWidget {
 }
 
 class _CouponsViewState extends State<CouponsView> {
-  CouponsViewModel viewModel;
-
   @override
   void initState() {
     super.initState();
-    viewModel = CouponsViewModel();
+
     context.read<CouponsViewModel>().fetcAllCoupoins();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: context.watch<CouponsViewModel>().isLoading ? const Center(child: CircularProgressIndicator()) : fetchBodyGridview(context),
+      body: RefreshIndicator(
+          onRefresh: () => context.read<CouponsViewModel>().refreshIndicator(),
+          child: context.watch<CouponsViewModel>().isLoading ? const Center(child: CircularProgressIndicator()) : fetchBodyGridview(context)),
     );
   }
 
   Widget fetchBodyGridview(BuildContext context) {
     return GridView.builder(
-        itemCount: context.watch<CouponsViewModel>().modelList.length,
+        itemCount: context.watch<CouponsViewModel>().couponList?.length ?? 0,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           mainAxisSpacing: 20,
@@ -42,10 +43,9 @@ class _CouponsViewState extends State<CouponsView> {
           childAspectRatio: 2 / 3.6,
         ),
         itemBuilder: (context, index) {
-          CouponsModel model = CouponsModel.fromJson(context.watch<CouponsViewModel>().modelList[index]);
           return Padding(
             padding: const EdgeInsets.all(8.0),
-            child: gridviewCardItem(context, model),
+            child: gridviewCardItem(context, context.watch<CouponsViewModel>().couponList.elementAt(index)),
           );
         });
   }
@@ -60,7 +60,6 @@ class _CouponsViewState extends State<CouponsView> {
   }
 
   Column gridViewColumn(BuildContext context, CouponsModel model) {
-    
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -144,7 +143,7 @@ class _CouponsViewState extends State<CouponsView> {
           primary: Colors.blue,
         ),
         onPressed: () {
-          viewModel.goToLink(link);
+          locator<CouponsViewModel>().goToLink(link);
         },
         child: const Center(child: Text("Siteye Git", style: TextStyle(color: Colors.white))));
   }

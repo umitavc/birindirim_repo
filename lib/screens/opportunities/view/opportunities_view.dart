@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:birindirm_deneme/core/init/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,12 +16,9 @@ class OpportunitiesView extends StatefulWidget {
 }
 
 class _OpportunitiesViewState extends State<OpportunitiesView> {
-  OpportunitiesViewModel viewModel;
   @override
   void initState() {
     super.initState();
-
-    viewModel = OpportunitiesViewModel();
     context.read<OpportunitiesViewModel>().fetcAllOpportunities();
   }
 
@@ -30,10 +28,9 @@ class _OpportunitiesViewState extends State<OpportunitiesView> {
         body: context.watch<OpportunitiesViewModel>().isLoading
             ? const Center(child: CircularProgressIndicator())
             : ListView.builder(
-                itemCount: context.watch<OpportunitiesViewModel>().modelList?.length ?? 0,
+                itemCount: context.watch<OpportunitiesViewModel>().opportunitiesList?.length ?? 0,
                 itemBuilder: (context, index) {
-                  OpportunitiesModel model = OpportunitiesModel.fromJson(context.watch<OpportunitiesViewModel>().modelList[index]);
-                  return _withContainer(context, model);
+                  return _withContainer(context, context.watch<OpportunitiesViewModel>().opportunitiesList[index]);
                 },
               ));
   }
@@ -100,7 +97,7 @@ class _OpportunitiesViewState extends State<OpportunitiesView> {
 
   Widget fetchColumnPrice(BuildContext context, OpportunitiesModel model) {
     return GestureDetector(
-      onTap: (() => viewModel.goToLink(model.link)),
+      onTap: (() => locator<OpportunitiesViewModel>().goToLink(model.link)),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
