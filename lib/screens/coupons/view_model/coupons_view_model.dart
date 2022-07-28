@@ -20,6 +20,7 @@ class CouponsViewModel extends ChangeNotifier {
     changeIsloading();
     final list = await _service.fetchAllOpportinies();
     _couponList = list;
+    await Future.delayed(Duration(milliseconds: 2000));
     changeIsloading();
     notifyListeners();
   }

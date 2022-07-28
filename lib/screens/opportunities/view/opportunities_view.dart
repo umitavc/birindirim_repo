@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:birindirm_deneme/core/constant/app/image_constant.dart';
 import 'package:birindirm_deneme/core/init/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -20,19 +21,63 @@ class _OpportunitiesViewState extends State<OpportunitiesView> {
   void initState() {
     super.initState();
     context.read<OpportunitiesViewModel>().fetcAllOpportunities();
+    // locator<OpportunitiesViewModel>().connectionControl();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: context.watch<OpportunitiesViewModel>().isLoading
-            ? const Center(child: CircularProgressIndicator())
-            : ListView.builder(
-                itemCount: context.watch<OpportunitiesViewModel>().opportunitiesList?.length ?? 0,
-                itemBuilder: (context, index) {
-                  return _withContainer(context, context.watch<OpportunitiesViewModel>().opportunitiesList[index]);
-                },
-              ));
+        body: context.watch<OpportunitiesViewModel>().connectionWaiting
+            ? buildNetworkException(context)
+            : context.watch<OpportunitiesViewModel>().isLoading
+                ? const Center(child: CircularProgressIndicator())
+                : ListView.builder(
+                    itemCount: context.watch<OpportunitiesViewModel>().opportunitiesList?.length ?? 0,
+                    itemBuilder: (context, index) {
+                      return _withContainer(context, context.watch<OpportunitiesViewModel>().opportunitiesList[index]);
+                    },
+                  ));
+  }
+
+  Widget buildNetworkException(BuildContext context) {
+    return Container(
+      height: double.infinity,
+      width: double.infinity,
+      color: Colors.white,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          buildAssetImage(context),
+          buildNetworkErrorButton(context),
+        ],
+      ),
+    );
+  }
+
+  Widget buildAssetImage(BuildContext context) {
+    return Image.asset(ImageConstant.instance.networkMistake);
+  }
+
+  Widget buildNetworkErrorButton(BuildContext context) {
+    return InkWell(
+      onTap: () => context.read<OpportunitiesViewModel>().connectionControl(),
+      child: Padding(
+        padding: context.paddingHighHorizontal,
+        child: Container(
+            width: double.infinity,
+            height: context.dymaicHeight(0.06),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: Colors.grey,
+            ),
+            child: Center(
+                child: Text(
+              "Tekrar Baglan",
+              style: context.textThem.headline6.copyWith(color: Colors.white, fontSize: 18),
+            ))),
+      ),
+    );
   }
 
   Widget _withContainer(BuildContext context, OpportunitiesModel model) {
