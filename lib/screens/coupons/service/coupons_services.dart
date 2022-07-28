@@ -1,8 +1,11 @@
 import 'dart:convert';
 
+import 'package:birindirm_deneme/components/local_get_snackbar.dart';
+import 'package:birindirm_deneme/core/constant/enum/service_enum.dart';
 import 'package:birindirm_deneme/core/constant/services/end_point.dart';
 import 'package:birindirm_deneme/core/init/network_manager.dart';
 import 'package:birindirm_deneme/screens/coupons/model/coupons_model.dart';
+import 'package:get/get.dart';
 
 class CouponsService {
   final dio = NetworkManager.instance.dio;
@@ -22,7 +25,7 @@ class CouponsService {
 
       }
     } catch (e) {
-      print("hata *********** :" + e.toString());
+      LocaleGetSnackBar.localeSnackBar(true, "lütfen daha sonra tekrar deneyiniz");
     }
   }
 }
