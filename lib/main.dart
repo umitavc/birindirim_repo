@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 void main() {
   setupLocator();
   runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(create: (context) => OpportunitiesViewModel()),
+    ChangeNotifierProvider(create: (context) => locator<OpportunitiesViewModel>()),
     ChangeNotifierProvider(create: (context) => locator<CouponsViewModel>()),
   ], child: const MyApp()));
 }
