@@ -2,6 +2,7 @@
 
 import 'package:birindirm_deneme/screens/coupons/model/coupons_model.dart';
 import 'package:birindirm_deneme/screens/coupons/service/coupons_services.dart';
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -11,8 +12,14 @@ class CouponsViewModel extends ChangeNotifier {
   CouponsService _service;
   bool isLoading = false;
   bool isRefresh = false;
+  bool connectionWaiting = false;
+
   void changeIsloading() {
     isLoading = !isLoading;
+  }
+
+  void changeConnectionWaiting(bool state) {
+    connectionWaiting = state;
   }
 
   Future<void> refreshIndicator() async {
@@ -20,12 +27,14 @@ class CouponsViewModel extends ChangeNotifier {
     changeIsloading();
     final list = await _service.fetchAllOpportinies();
     _couponList = list;
-    await Future.delayed(Duration(milliseconds: 2000));
+    await Future.delayed(const Duration(milliseconds: 2000));
     changeIsloading();
     notifyListeners();
   }
 
   Future<void> fetcAllCoupoins() async {
+    final connection = await connectionControl();
+    if (connection) return;
     if (_couponList?.isNotEmpty ?? false) return;
 
     _service = CouponsService();
@@ -47,6 +56,19 @@ class CouponsViewModel extends ChangeNotifier {
       }
     } catch (e) {
       print("hata $e");
+    }
+  }
+
+  Future<bool> connectionControl() async {
+    final result = await Connectivity().checkConnectivity();
+    if (result == ConnectivityResult.none) {
+      changeConnectionWaiting(true);
+      notifyListeners();
+      return true;
+    } else {
+      changeConnectionWaiting(false);
+      notifyListeners();
+      return false;
     }
   }
 }

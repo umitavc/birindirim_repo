@@ -1,5 +1,5 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:birindirm_deneme/core/init/network/network_change.dart';
-import 'package:birindirm_deneme/core/init/network_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
@@ -30,17 +30,20 @@ class _NetworkWidgetPageState extends State<NetworkWidgetPage> {
       crossFadeState: _networkResult == NetworkResult.off ? CrossFadeState.showFirst : CrossFadeState.showSecond,
       firstChild: Container(
         height: 60,
-        color: Colors.red,
+        color: context.colorScheme.onError,
         child: Padding(
             padding: context.paddingLow,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                const Icon(Icons.perm_scan_wifi),
-                SizedBox(width: 15),
+                Icon(
+                  Icons.perm_scan_wifi,
+                  color: context.colorScheme.onSurface,
+                ),
+                const SizedBox(width: 15),
                 Expanded(
-                    child: Text("İnternete baglanılmıyor lütfen baglantınızı  kontrol ediniz",
-                        style: context.textTheme.headline6.copyWith(fontSize: 16, color: Colors.white))),
+                    child: AutoSizeText("İnternete baglanılmıyor lütfen baglantınızı  kontrol ediniz",
+                        style: context.textTheme.headline6.copyWith(fontSize: 16, color: context.colorScheme.onSurface))),
               ],
             )),
       ),
