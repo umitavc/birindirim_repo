@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'app_theme.dart';
 import 'light/theme_light_interface.dart';
 
-class AppThemeLight extends AppThema with ILightTheme {
+class AppThemeLight extends AppTheme with ILightTheme {
   static AppThemeLight _instace;
   static AppThemeLight get instance {
     _instace ??= AppThemeLight._init();
@@ -14,14 +14,22 @@ class AppThemeLight extends AppThema with ILightTheme {
 
   @override
   ThemeData get theme => ThemeData.light().copyWith(
-        colorScheme: appColorScheme,
+        colorScheme: const ColorScheme.light().copyWith(
+          primary: Colors.orange,
+          onPrimary: Colors.orange,
+          secondary: Colors.black,
+          onSecondary: Colors.white,
+           onSurface: Colors.white,
+           onError: Colors.black
+        ),
         textTheme: textTheme(),
-        appBarTheme: ThemeData.light().appBarTheme.copyWith(
-              color: Colors.transparent,
-              titleTextStyle: const TextStyle(color: Colors.white, fontSize: 18, letterSpacing: 1),
-              iconTheme: const IconThemeData(color: Colors.white),
-              elevation: 0,
-            ),
+        appBarTheme: const AppBarTheme().copyWith(
+          backgroundColor: Colors.amber.shade700,
+          toolbarTextStyle: textThemeLight.headline6,
+          titleTextStyle: const TextStyle(color: Colors.white, fontSize: 20),
+          iconTheme: const IconThemeData(color: Colors.white),
+          elevation: 0,
+        ),
       );
 
   TextTheme textTheme() => TextTheme(
@@ -34,20 +42,4 @@ class AppThemeLight extends AppThema with ILightTheme {
         headline5: textThemeLight.headline5,
         headline6: textThemeLight.headline6,
       );
-
-  ColorScheme get appColorScheme {
-    return ColorScheme(
-      primary: colorSchemeLight.orange,
-      secondary: colorSchemeLight.white,
-      surface: const Color(0xffffc93c),
-      background: const Color(0xfff6f9fc),
-      error: Colors.cyan,
-      onPrimary: Colors.blue, //*
-      onSecondary: Colors.black,
-      onSurface: Colors.white30,
-      onBackground: Colors.black12,
-      onError: Colors.orange,
-      brightness: Brightness.light,
-    );
-  }
 }

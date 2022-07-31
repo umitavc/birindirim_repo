@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:birindirm_deneme/core/constant/app/image_constant.dart';
 import 'package:birindirm_deneme/core/constant/app/string_constant.dart';
 import 'package:birindirm_deneme/core/extension/context_extension.dart';
+import 'package:birindirm_deneme/screens/_product/card/network_exception_card.dart';
 import 'package:birindirm_deneme/screens/coupons/model/coupons_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -27,9 +28,19 @@ class _CouponsViewState extends State<CouponsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: RefreshIndicator(
-          onRefresh: () => context.read<CouponsViewModel>().refreshIndicator(),
-          child: context.watch<CouponsViewModel>().isLoading ? const Center(child: CircularProgressIndicator()) : fetchBodyGridview(context)),
+      body: context.watch<CouponsViewModel>().connectionWaiting
+          ? buildNetworkExceptionCard(context)
+          : RefreshIndicator(
+              onRefresh: () => context.read<CouponsViewModel>().refreshIndicator(),
+              child: context.watch<CouponsViewModel>().isLoading ? const Center(child: CircularProgressIndicator()) : fetchBodyGridview(context)),
+    );
+  }
+
+  NetworkExceptionCard buildNetworkExceptionCard(BuildContext context) {
+    return NetworkExceptionCard(
+      onPresssed: () {
+        context.read<CouponsViewModel>().connectionControl();
+      },
     );
   }
 
@@ -53,7 +64,6 @@ class _CouponsViewState extends State<CouponsView> {
   Widget gridviewCardItem(BuildContext context, model) {
     return Card(
       child: Container(
-        color: Colors.white,
         child: gridViewColumn(context, model),
       ),
     );
@@ -64,8 +74,7 @@ class _CouponsViewState extends State<CouponsView> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Container(
-          color: Colors.white,
+        SizedBox(
           height: context.dymaicWidth(0.4),
           child: Stack(
             children: [
@@ -97,6 +106,7 @@ class _CouponsViewState extends State<CouponsView> {
       left: 30,
       right: 30,
       child: Card(
+        color: Colors.white,
         shadowColor: Colors.white,
         child: centerTextWidget(model),
       ),
@@ -105,6 +115,7 @@ class _CouponsViewState extends State<CouponsView> {
 
   Widget centerTextWidget(CouponsModel model) {
     return Container(
+      padding: context.paddingLow,
       height: 40,
       decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
       child: Center(

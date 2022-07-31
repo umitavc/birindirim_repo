@@ -1,4 +1,6 @@
-
+import 'package:birindirm_deneme/core/constant/enum/app_theme_enum.dart';
+import 'package:birindirm_deneme/core/init/cache/local_manager.dart';
+import 'package:birindirm_deneme/core/init/notifier/theme_notifier.dart';
 import 'package:birindirm_deneme/screens/coupons/view/coupons_view.dart';
 import 'package:birindirm_deneme/screens/opportunities/view/opportunities_view.dart';
 import 'package:birindirm_deneme/components/constant.dart';
@@ -6,6 +8,9 @@ import 'package:birindirm_deneme/components/widget_card/populer_item_Card.dart';
 import 'package:birindirm_deneme/public/product.dart';
 import 'package:birindirm_deneme/screens/populer_view/view/populer_view.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:provider/provider.dart';
 
 import 'brands_view/view/brands_view.dart';
 
@@ -26,7 +31,7 @@ class _BodyViewState extends State<BodyView> {
       BrandsView(),
 
       //kerem
-     const OpportunitiesView(),
+      const OpportunitiesView(),
 
       const CouponsView()
     ];
@@ -42,28 +47,46 @@ class _BodyViewState extends State<BodyView> {
             return pageItems[_currenIndex];
           }),
       floatingActionButton: Padding(
-        padding: const EdgeInsets.only(bottom: 30),
-        child: FloatingActionButton(
-          onPressed: () {},
-          child: Icon(Icons.dark_mode_rounded),
-          backgroundColor: Colors.amber.shade800,
-        ),
-      ),
+          padding: const EdgeInsets.only(bottom: 30),
+          child: ValueListenableBuilder<Box>(
+            valueListenable: Boxes.getDark().listenable(),
+            builder: (context, box, child) {
+              return FloatingActionButton(
+                onPressed: () {
+                  if (box.get("darkMode") != null && box.get("darkMode")) {
+                    box.put("darkMode", false);
+                    context.read<ThemeNotifier>().changeTheme(AppThemeEnum.light);
+                  } else {
+                    box.put("darkMode", true);
+                    context.read<ThemeNotifier>().changeTheme(AppThemeEnum.dark);
+                  }
+                },
+                child: const Icon(Icons.dark_mode_rounded),
+                backgroundColor: context.watch<ThemeNotifier>().appThemes == AppThemeEnum.dark ? Colors.white : Colors.orange,
+              );
+            },
+          )),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            backgroundColor: Colors.orange,
+            backgroundColor: context.watch<ThemeNotifier>().appThemes == AppThemeEnum.dark ? Colors.black : Colors.orange,
             icon: Text(
               "Popüler",
               style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 1),
             ),
             label: "",
           ),
-          BottomNavigationBarItem(backgroundColor: Colors.orange, icon: Text("Markalar", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 1)), label: ""),
-          BottomNavigationBarItem(backgroundColor: Colors.orange, icon: Text("Fırsatlar", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 1)), label: ""),
           BottomNavigationBarItem(
-            backgroundColor: Colors.orange,
+              backgroundColor: context.watch<ThemeNotifier>().appThemes == AppThemeEnum.dark ? Colors.black : Colors.orange,
+              icon: Text("Markalar", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 1)),
+              label: ""),
+          BottomNavigationBarItem(
+              backgroundColor: context.watch<ThemeNotifier>().appThemes == AppThemeEnum.dark ? Colors.black : Colors.orange,
+              icon: Text("Fırsatlar", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 1)),
+              label: ""),
+          BottomNavigationBarItem(
+            backgroundColor: context.watch<ThemeNotifier>().appThemes == AppThemeEnum.dark ? Colors.black : Colors.orange,
             icon: Text("Kuponlar", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 1)),
             label: "",
           ),

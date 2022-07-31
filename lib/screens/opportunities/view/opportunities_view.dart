@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:birindirm_deneme/core/constant/app/image_constant.dart';
 import 'package:birindirm_deneme/core/init/locator.dart';
+import 'package:birindirm_deneme/screens/_product/card/network_exception_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -28,7 +29,7 @@ class _OpportunitiesViewState extends State<OpportunitiesView> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: context.watch<OpportunitiesViewModel>().connectionWaiting
-            ? buildNetworkException(context)
+            ? buildNetworkExceptionCard(context)
             : context.watch<OpportunitiesViewModel>().isLoading
                 ? const Center(child: CircularProgressIndicator())
                 : ListView.builder(
@@ -39,44 +40,11 @@ class _OpportunitiesViewState extends State<OpportunitiesView> {
                   ));
   }
 
-  Widget buildNetworkException(BuildContext context) {
-    return Container(
-      height: double.infinity,
-      width: double.infinity,
-      color: Colors.white,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          buildAssetImage(context),
-          buildNetworkErrorButton(context),
-        ],
-      ),
-    );
-  }
-
-  Widget buildAssetImage(BuildContext context) {
-    return Image.asset(ImageConstant.instance.networkMistake);
-  }
-
-  Widget buildNetworkErrorButton(BuildContext context) {
-    return InkWell(
-      onTap: () => context.read<OpportunitiesViewModel>().connectionControl(),
-      child: Padding(
-        padding: context.paddingHighHorizontal,
-        child: Container(
-            width: double.infinity,
-            height: context.dymaicHeight(0.06),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: Colors.grey,
-            ),
-            child: Center(
-                child: Text(
-              "Tekrar Baglan",
-              style: context.textThem.headline6.copyWith(color: Colors.white, fontSize: 18),
-            ))),
-      ),
+  NetworkExceptionCard buildNetworkExceptionCard(BuildContext context) {
+    return NetworkExceptionCard(
+      onPresssed: () {
+        context.read<OpportunitiesViewModel>().connectionControl();
+      },
     );
   }
 
@@ -176,14 +144,15 @@ class _OpportunitiesViewState extends State<OpportunitiesView> {
 }
 
 Widget newPriceText(BuildContext context, OpportunitiesModel model) {
-  return PriceTextOpportunities(text: model.newPrice, style: context.textThem.bodyMedium.copyWith(color: Colors.orange, fontWeight: FontWeight.w700));
+  return PriceTextOpportunities(
+      text: model.newPrice, style: context.textThem.bodyMedium.copyWith(color: context.colors.onPrimary, fontWeight: FontWeight.w700));
 }
 
 Widget fetchRowIcon(BuildContext context) {
-  return const Center(
+  return Center(
       child: Icon(
     Icons.arrow_forward_ios,
-    color: Colors.orange,
+    color: context.colors.primary,
     size: 20,
   ));
 }

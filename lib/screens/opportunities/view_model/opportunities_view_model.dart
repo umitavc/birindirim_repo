@@ -39,7 +39,7 @@ class OpportunitiesViewModel extends ChangeNotifier {
     try {
       var encoded = Uri.encodeFull(link);
       if (await canLaunch(encoded)) {
-        print("encoded  :" + encoded);
+        print("encoded  :$encoded");
         await launch(encoded);
       }
     } catch (e) {

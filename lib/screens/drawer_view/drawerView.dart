@@ -1,8 +1,11 @@
+import 'package:birindirm_deneme/core/constant/enum/app_theme_enum.dart';
+import 'package:birindirm_deneme/core/init/notifier/theme_notifier.dart';
 import 'package:birindirm_deneme/screens/drawer_view/iconPage/hakkimizda.dart';
 import 'package:birindirm_deneme/screens/mainScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:provider/provider.dart';
 
 class DrawerWidget extends StatelessWidget {
   DrawerWidget({Key key}) : super(key: key);
@@ -12,7 +15,7 @@ class DrawerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: Material(
-        color: Colors.amber.shade700,
+        color: context.watch<ThemeNotifier>().appThemes == AppThemeEnum.dark ? Colors.black : Colors.amber.shade700,
         child: ListView(
           padding: padding,
           children: [
