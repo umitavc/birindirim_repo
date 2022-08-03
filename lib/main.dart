@@ -12,6 +12,8 @@ import 'package:get/get.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 
+import 'core/init/network/interceptors/api_key_challange_interceptor.dart';
+
 void main() async {
   await _init();
   setupLocator();
@@ -32,6 +34,8 @@ Future<void> _init() async {
       dio: NetworkManager.instance.dio,
     ),
   ));
+  NetworkManager.instance.addInterceptor(ApiKeyChallangeSolutionInterceptor());
+  NetworkManager.instance.addInterceptor(ApiKeyChallangeInterceptor());
 }
 
 class MyApp extends StatelessWidget {
