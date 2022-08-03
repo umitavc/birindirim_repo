@@ -13,4 +13,8 @@ class NetworkManager {
     dio.options.sendTimeout = 40000;
     dio.options.baseUrl = "https://api.yazilimgo.com";
   }
+
+  addInterceptor(Interceptor interceptor) {
+    dio.interceptors.add(interceptor);
+  }
 }
