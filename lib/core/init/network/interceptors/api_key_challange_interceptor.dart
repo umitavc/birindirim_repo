@@ -12,4 +12,6 @@ class ApiKeyChallangeInterceptor extends Interceptor {
   }
 }
 
-class ApiKeyChallangeSolutionInterceptor extends Interceptor {}
+class ApiKeyChallangeSolutionInterceptor extends Interceptor {
+  
+}
