@@ -6,8 +6,9 @@ class ApiKeyChallangeInterceptor extends Interceptor {
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     if (!options.path.contains(apiKey)) {
       handler.reject(DioError(requestOptions: options));
+    } else {
+      handler.next(options);
     }
-    handler.next(options);
   }
 }
 
