@@ -1,5 +1,6 @@
 import 'package:birindirm_deneme/components/network_widget_page.dart';
 import 'package:birindirm_deneme/core/init/locator.dart';
+import 'package:birindirm_deneme/core/init/network/interceptors/path_printer_interceptor.dart';
 import 'package:birindirm_deneme/core/init/network/interceptors/socket_exception_interceptor.dart';
 import 'package:birindirm_deneme/core/init/network_manager.dart';
 import 'package:birindirm_deneme/core/init/notifier/theme_notifier.dart';
@@ -27,6 +28,14 @@ Future<void> _init() async {
   await Hive.initFlutter();
   await Hive.openBox("theme");
   NetworkManager.instance.addInterceptor(RetryOnConnectionChangeInterceptor(
+    
+    requestRetrier: DioConnectivityRequestRetrier(
+      connectivity: Connectivity(),
+      dio: NetworkManager.instance.dio,
+    ),
+  ));
+  NetworkManager.instance.addInterceptor(PathPrinterInterceptor(
+    
     requestRetrier: DioConnectivityRequestRetrier(
       connectivity: Connectivity(),
       dio: NetworkManager.instance.dio,
