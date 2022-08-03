@@ -1,9 +1,12 @@
 import 'package:birindirm_deneme/components/network_widget_page.dart';
 import 'package:birindirm_deneme/core/init/locator.dart';
+import 'package:birindirm_deneme/core/init/network/interceptors/socket_exception_interceptor.dart';
+import 'package:birindirm_deneme/core/init/network_manager.dart';
 import 'package:birindirm_deneme/core/init/notifier/theme_notifier.dart';
 import 'package:birindirm_deneme/screens/coupons/view_model/coupons_view_model.dart';
 import 'package:birindirm_deneme/screens/mainScreen.dart';
 import 'package:birindirm_deneme/screens/opportunities/view_model/opportunities_view_model.dart';
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -23,6 +26,12 @@ Future<void> _init() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   await Hive.openBox("theme");
+  NetworkManager.instance.addInterceptor(RetryOnConnectionChangeInterceptor(
+    requestRetrier: DioConnectivityRequestRetrier(
+      connectivity: Connectivity(),
+      dio: NetworkManager.instance.dio,
+    ),
+  ));
 }
 
 class MyApp extends StatelessWidget {
