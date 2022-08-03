@@ -8,7 +8,10 @@ class PathPrinterInterceptor extends Interceptor {
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     if (options.path != null) {
       print("path değeri : " + options.path);
+    } else{
       handler.next(options);
     }
+      
+    }
   }
-}
+
