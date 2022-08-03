@@ -21,6 +21,8 @@ class ApiKeyChallangeSolutionInterceptor extends Interceptor {
       options.path+=apiKey;
       handler.next(options);
     }
+    else   handler.reject(DioError(requestOptions: options));
+
   }
 
 }
