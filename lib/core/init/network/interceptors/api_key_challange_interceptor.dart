@@ -13,16 +13,13 @@ class ApiKeyChallangeInterceptor extends Interceptor {
 }
 
 class ApiKeyChallangeSolutionInterceptor extends Interceptor {
-    final String apiKey = "&apikey=12345";
+  final String apiKey = "&apikey=12345";
 
-   @override
+  @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    if (options.path!=null && !options.path.contains(apiKey)) {
-      options.path+=apiKey;
+    if (options.path != null && !options.path.contains(apiKey)) {
+      options.path += apiKey;
       handler.next(options);
-    }
-    else   handler.reject(DioError(requestOptions: options));
-
+    } else handler.next(options);
   }
-
 }
