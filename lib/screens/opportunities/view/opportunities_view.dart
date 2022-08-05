@@ -26,17 +26,18 @@ class _OpportunitiesViewState extends State<OpportunitiesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body:  context.watch<OpportunitiesViewModel>().isLoading
-                ? const Center(child: CircularProgressIndicator())
-                : ListView.builder(
-                    itemCount: context.watch<OpportunitiesViewModel>().opportunitiesList?.length ?? 0,
-                    itemBuilder: (context, index) {
-                      return _withContainer(context, context.watch<OpportunitiesViewModel>().opportunitiesList[index]);
-                    },
-                  ));
+        body: RefreshIndicator(
+      onRefresh: () => context.read<OpportunitiesViewModel>().refreshIndicator(),
+      child: context.watch<OpportunitiesViewModel>().isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : ListView.builder(
+              itemCount: context.watch<OpportunitiesViewModel>().opportunitiesList?.length ?? 0,
+              itemBuilder: (context, index) {
+                return _withContainer(context, context.watch<OpportunitiesViewModel>().opportunitiesList[index]);
+              },
+            ),
+    ));
   }
-
- 
 
   Widget _withContainer(BuildContext context, OpportunitiesModel model) {
     return Container(

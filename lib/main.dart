@@ -1,11 +1,14 @@
 import 'package:birindirm_deneme/components/network_widget_page.dart';
 import 'package:birindirm_deneme/core/init/cache/connectivity_manager.dart';
 import 'package:birindirm_deneme/core/init/locator.dart';
+import 'package:birindirm_deneme/core/init/network/interceptors/socket_exception_interceptor.dart';
 import 'package:birindirm_deneme/core/init/network_manager.dart';
 import 'package:birindirm_deneme/core/init/notifier/theme_notifier.dart';
 import 'package:birindirm_deneme/screens/coupons/view_model/coupons_view_model.dart';
-import 'package:birindirm_deneme/screens/mainScreen.dart';
 import 'package:birindirm_deneme/screens/opportunities/view_model/opportunities_view_model.dart';
+import 'package:birindirm_deneme/screens/splash_view/view/splash_view.dart';
+import 'package:birindirm_deneme/screens/splash_view/view_model/splash_view_model.dart';
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -19,6 +22,7 @@ void main() async {
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (context) => locator<OpportunitiesViewModel>()),
     ChangeNotifierProvider(create: (context) => locator<CouponsViewModel>()),
+    ChangeNotifierProvider(create: (context) => locator<SplashViewModel>()),
     ChangeNotifierProvider(create: (context) => ThemeNotifier()),
   ], child: const MyApp()));
 }
@@ -27,12 +31,12 @@ Future<void> _init() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   await Hive.openBox("theme");
-  /* NetworkManager.instance.addInterceptor(RetryOnConnectionChangeInterceptor(
+  NetworkManager.instance.addInterceptor(RetryOnConnectionChangeInterceptor(
     requestRetrier: DioConnectivityRequestRetrier(
       connectivity: Connectivity(),
       dio: NetworkManager.instance.dio,
     ),
-  )); */
+  ));
   NetworkManager.instance.addInterceptor(ApiKeyChallangeSolutionInterceptor());
   NetworkManager.instance.addInterceptor(ApiKeyChallangeInterceptor());
 }
@@ -45,8 +49,8 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      onReady: ()=>ConnectivityManager.instance,
       theme: context.watch<ThemeNotifier>().currentTheme,
+      onReady: () => ConnectivityManager.instance,
       builder: (context, widget) {
         return Column(
           children: [
@@ -55,7 +59,7 @@ class MyApp extends StatelessWidget {
           ],
         );
       },
-      home: const MainScreens(),
+      home: const SplashView(),
     );
   }
 }
