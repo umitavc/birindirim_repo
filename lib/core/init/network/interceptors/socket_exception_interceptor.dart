@@ -46,10 +46,9 @@ class RetryOnConnectionChangeInterceptor extends Interceptor {
     ErrorInterceptorHandler handler,
   ) {
     if (_shouldRetry(err)) {
-      handler.next(err);
       try {
         get_dialog.Get.defaultDialog(title: "Bağlantı Hatası", middleText: "İnternet Bağlantınızı kontrol edin.", barrierDismissible: false);
-        //Retry request
+        //Retry request ///eger hata sonlanmıs ise ve tekrar istek atılıyorsa bu getxi kapatma vakti 
         requestRetrier.scheduleRequestRetry(err.requestOptions).then((value) {
           get_dialog.Get.close(1);
           handler.next(err);

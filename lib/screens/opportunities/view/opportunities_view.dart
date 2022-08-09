@@ -1,7 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:birindirm_deneme/core/constant/app/image_constant.dart';
 import 'package:birindirm_deneme/core/init/locator.dart';
-import 'package:birindirm_deneme/screens/_product/card/network_exception_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -28,9 +26,7 @@ class _OpportunitiesViewState extends State<OpportunitiesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: context.watch<OpportunitiesViewModel>().connectionWaiting
-            ? buildNetworkExceptionCard(context)
-            : context.watch<OpportunitiesViewModel>().isLoading
+        body:  context.watch<OpportunitiesViewModel>().isLoading
                 ? const Center(child: CircularProgressIndicator())
                 : ListView.builder(
                     itemCount: context.watch<OpportunitiesViewModel>().opportunitiesList?.length ?? 0,
@@ -40,13 +36,7 @@ class _OpportunitiesViewState extends State<OpportunitiesView> {
                   ));
   }
 
-  NetworkExceptionCard buildNetworkExceptionCard(BuildContext context) {
-    return NetworkExceptionCard(
-      onPresssed: () {
-        context.read<OpportunitiesViewModel>().connectionControl();
-      },
-    );
-  }
+ 
 
   Widget _withContainer(BuildContext context, OpportunitiesModel model) {
     return Container(

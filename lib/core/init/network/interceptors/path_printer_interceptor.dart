@@ -1,3 +1,5 @@
 import 'package:dio/dio.dart';
 
-class PathPrinterInterceptor extends Interceptor {}
+class PathPrinterInterceptor extends Interceptor {
+  
+}

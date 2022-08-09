@@ -2,7 +2,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:birindirm_deneme/core/constant/app/image_constant.dart';
 import 'package:birindirm_deneme/core/constant/app/string_constant.dart';
 import 'package:birindirm_deneme/core/extension/context_extension.dart';
-import 'package:birindirm_deneme/screens/_product/card/network_exception_card.dart';
 import 'package:birindirm_deneme/screens/coupons/model/coupons_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -28,21 +27,13 @@ class _CouponsViewState extends State<CouponsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: context.watch<CouponsViewModel>().connectionWaiting
-          ? buildNetworkExceptionCard(context)
-          : RefreshIndicator(
+      body:  RefreshIndicator(
               onRefresh: () => context.read<CouponsViewModel>().refreshIndicator(),
               child: context.watch<CouponsViewModel>().isLoading ? const Center(child: CircularProgressIndicator()) : fetchBodyGridview(context)),
     );
   }
 
-  NetworkExceptionCard buildNetworkExceptionCard(BuildContext context) {
-    return NetworkExceptionCard(
-      onPresssed: () {
-        context.read<CouponsViewModel>().connectionControl();
-      },
-    );
-  }
+ 
 
   Widget fetchBodyGridview(BuildContext context) {
     return GridView.builder(
