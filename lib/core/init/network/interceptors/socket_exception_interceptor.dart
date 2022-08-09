@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:birindirm_deneme/core/init/network_manager.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart' as get_dialog;
 
 class DioConnectivityRequestRetrier {
@@ -47,7 +47,14 @@ class RetryOnConnectionChangeInterceptor extends Interceptor {
   ) {
     if (_shouldRetry(err)) {
       try {
-        get_dialog.Get.defaultDialog(title: "Bağlantı Hatası", middleText: "İnternet Bağlantınızı kontrol edin.", barrierDismissible: false);
+        get_dialog.Get.defaultDialog(
+        backgroundColor: get_dialog.Get.theme.colorScheme.onError,
+        title: 'Hay aksi !',
+        titleStyle: get_dialog.Get.theme.textTheme.headline6.copyWith(fontSize: 16, color: get_dialog.Get.theme.colorScheme.onSurface, fontWeight: FontWeight.bold),
+        middleText: 'lütfen internet  baglantınızı kontrol ediniz',
+        middleTextStyle: get_dialog.Get.textTheme.headline6.copyWith(fontSize: 16, color: get_dialog.Get.theme.colorScheme.onSurface),
+        barrierDismissible: false,
+      );
         //Retry request ///eger hata sonlanmıs ise ve tekrar istek atılıyorsa bu getxi kapatma vakti 
         requestRetrier.scheduleRequestRetry(err.requestOptions).then((value) {
           get_dialog.Get.close(1);

@@ -11,6 +11,7 @@ class ConnectivityManager {
   static ConnectivityManager get instance => _instance;
   Connectivity _connectivity;
   ConnectivityResult _connectionStatus;
+  Connectivity get connectivity=>_connectivity;
   StreamSubscription<ConnectivityResult> _connectivitySubscription;
 
   bool _showError = false;
@@ -19,8 +20,6 @@ class ConnectivityManager {
     _connectionStatus = ConnectivityResult.none;
     _connectivity = Connectivity();
     _connectivitySubscription = _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
-    _updateConnectionStatus(_connectionStatus);
-    getInitialStatus();
   }
 
   Future<void> getInitialStatus() async {
@@ -43,27 +42,31 @@ class ConnectivityManager {
   }
 
   void showError() {
-    if (Get.isDialogOpen) Get.close(1);
-    if (!_showError) {
-      Get.defaultDialog(
-        backgroundColor: Get.theme.colorScheme.onError,
-        title: 'Hay aksi !',
-        titleStyle: Get.theme.textTheme.headline6.copyWith(fontSize: 16, color: Get.theme.colorScheme.onSurface, fontWeight: FontWeight.bold),
-        middleText: 'lütfen internet  baglantınızı kontrol ediniz',
-        middleTextStyle: Get.textTheme.headline6.copyWith(fontSize: 16, color: Get.theme.colorScheme.onSurface),
-        barrierDismissible: false,
-      );
-      _showError = true;
-      log("ConnectivityService: Error showed.");
-    }
+   
+      if (Get.isDialogOpen) Get.close(1);
+      if (!_showError) {
+        Get.defaultDialog(
+          backgroundColor: Get.theme.colorScheme.onError,
+          title: 'Hay aksi !',
+          titleStyle: Get.theme.textTheme.headline6.copyWith(fontSize: 16, color: Get.theme.colorScheme.onSurface, fontWeight: FontWeight.bold),
+          middleText: 'lütfen internet  baglantınızı kontrol ediniz',
+          middleTextStyle: Get.textTheme.headline6.copyWith(fontSize: 16, color: Get.theme.colorScheme.onSurface),
+          barrierDismissible: false,
+        );
+        _showError = true;
+        log("ConnectivityService: Error showed.");
+      }
+    
   }
 
   void closeError() {
-    if (_showError && Get.isDialogOpen) {
-      Get.close(1);
-      _showError = false;
-      log("ConnectivityService: Error closed.");
-    }
+    
+      if (_showError && Get.isDialogOpen) {
+        Get.close(1);
+        _showError = false;
+        log("ConnectivityService: Error closed.");
+      }
+    
   }
 
   cancel() {

@@ -23,6 +23,16 @@ class OpportunitiesViewModel extends ChangeNotifier {
     connectionWaiting = state;
   }
 
+  Future<void> refreshIndicator() async {
+    _service = OpportunitiesService();
+    changeIsloading();
+    final list = await _service.fetchAllOpportinies();
+    _opportunitiesList = list;
+    await Future.delayed(const Duration(milliseconds: 2000));
+    changeIsloading();
+    notifyListeners();
+  }
+
   Future<void> fetcAllOpportunities() async {
     final connection = await connectionControl();
     if (connection) return;
