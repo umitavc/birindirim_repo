@@ -1,6 +1,7 @@
 import 'package:birindirm_deneme/components/constant.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import 'drawer_view/drawerView.dart';
 import 'body.dart';
@@ -17,9 +18,13 @@ class MainScreens extends StatelessWidget {
           title: Text("Birindirim"),
           centerTitle: true,
           actions: [
-            IconButton(onPressed: (){
-              //context.setLocale(LocaleConstants.trLocale);
-            }, icon: Icon(Icons.g_translate_outlined))
+
+            TextButton(onPressed: (){
+              context.setLocale(LocaleConstants.trLocale);             
+            },style: TextButton.styleFrom(primary: Colors.white), child: Text("tr")),
+            TextButton(onPressed: (){
+              context.setLocale(LocaleConstants.enLocale);
+            },style: TextButton.styleFrom(primary: Colors.white), child: Text("en"))
           ],
         ),
       ),

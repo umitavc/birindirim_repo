@@ -69,7 +69,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: context.watch<ThemeNotifier>().currentTheme,
-      onReady: () => ConnectivityManager.instance,
+      //onReady: () => ConnectivityManager.instance,
       builder: (context, widget) {
         return Column(
           children: [

@@ -1,4 +1,6 @@
 import 'package:birindirm_deneme/core/constant/enum/app_theme_enum.dart';
+import 'package:birindirm_deneme/core/extension/string_extension.dart';
+import 'package:birindirm_deneme/core/init/lang/locale_keys.g.dart';
 import 'package:birindirm_deneme/core/init/notifier/theme_notifier.dart';
 import 'package:birindirm_deneme/screens/drawer_view/iconPage/hakkimizda.dart';
 import 'package:birindirm_deneme/screens/mainScreen.dart';
@@ -42,7 +44,7 @@ class DrawerWidget extends StatelessWidget {
               height: 48,
             ),
             builMenuItem(
-              text: 'Anasayfa',
+              text: LocaleKeys.drawer_home.locale,
               icon: Icons.home,
               onClicked: () => selectedItem(context, 0),
             ),
@@ -50,7 +52,7 @@ class DrawerWidget extends StatelessWidget {
               height: 16,
             ),
             builMenuItem(
-              text: 'Hakkımızda',
+              text: LocaleKeys.drawer_about.locale,
               icon: Icons.wrap_text,
               onClicked: () => selectedItem(context, 1),
             ),
@@ -58,14 +60,14 @@ class DrawerWidget extends StatelessWidget {
               height: 16,
             ),
             builMenuItem(
-              text: 'Değerlendir/Puan Ver!',
+              text: LocaleKeys.drawer_rate.locale,
               icon: Icons.thumb_up,
             ),
             SizedBox(
               height: 16,
             ),
             builMenuItem(
-              text: 'Arkadaşınla Paylaş',
+              text: LocaleKeys.drawer_share.locale,
               icon: Icons.share,
             ),
           ],
