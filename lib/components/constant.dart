@@ -1,4 +1,8 @@
+import 'package:birindirm_deneme/core/extension/string_extension.dart';
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
+
 
 const kTextColor =Color (0xFF535353);
 const kTextLightColor = Color(0xFFACACAC);
@@ -13,3 +17,22 @@ const kModalBottomColor=Color(0xFF0987E2);
 
 
 const kDefaultPaddin = 4.0;
+
+
+
+class LocaleConstants {
+   static const supported_locale = [
+    LocaleConstants.trLocale,
+    LocaleConstants.enLocale
+  ];
+  static const trLocale = Locale("tr","TR");
+  static const enLocale = Locale("en","US");
+  static const localePath = "assets/language";
+
+
+
+
+  
+}
+
+
