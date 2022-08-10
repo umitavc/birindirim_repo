@@ -1,11 +1,9 @@
 import 'package:birindirm_deneme/core/constant/app/application_constant.dart';
-import 'package:birindirm_deneme/core/init/cache/connectivity_manager.dart';
 import 'package:birindirm_deneme/core/init/lang/language_manager.dart';
 import 'package:birindirm_deneme/core/init/locator.dart';
 import 'package:birindirm_deneme/core/init/network/interceptors/socket_exception_interceptor.dart';
 import 'package:birindirm_deneme/core/init/network_manager.dart';
 import 'package:birindirm_deneme/core/init/notifier/theme_notifier.dart';
-import 'package:birindirm_deneme/screens/_product/bottom_network_warning/bottom_networ_warning.dart';
 import 'package:birindirm_deneme/screens/coupons/view_model/coupons_view_model.dart';
 import 'package:birindirm_deneme/screens/opportunities/view_model/opportunities_view_model.dart';
 import 'package:birindirm_deneme/screens/splash_view/view/splash_view.dart';
@@ -36,7 +34,6 @@ void main() async {
 }
 
 Future<void> _init() async {
-  
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   await Hive.initFlutter();
@@ -64,8 +61,6 @@ class MyApp extends StatelessWidget {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       theme: context.watch<ThemeNotifier>().currentTheme,
-      onReady: () => ConnectivityManager.instance,
-      builder: MainBuilder.build,
       home: const SplashView(),
     );
   }

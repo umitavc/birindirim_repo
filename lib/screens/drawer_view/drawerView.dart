@@ -18,7 +18,6 @@ class DrawerWidget extends StatelessWidget {
   //final urlImage = "https://fidansepetim.com/uploads/p/p/3-Yas-Asili-Granny-Smith-Elma-Fidani-Yesil-Mayhos_1.jpg";
   @override
   Widget build(BuildContext context) {
-    
     return Drawer(
       child: Material(
         color: context.watch<ThemeNotifier>().appThemes == AppThemeEnum.dark ? Colors.black : Colors.amber.shade700,
@@ -64,7 +63,7 @@ class DrawerWidget extends StatelessWidget {
               height: 16,
             ),
             builMenuItem(
-              text:LocaleKeys.drawer_rate.locale,
+              text: LocaleKeys.drawer_rate.locale,
               icon: Icons.thumb_up,
             ),
             SizedBox(
@@ -74,22 +73,29 @@ class DrawerWidget extends StatelessWidget {
               text: LocaleKeys.drawer_share.locale,
               icon: Icons.share,
             ),
-           DropdownButton<dynamic>(
-                  value: context.watch<ThemeNotifier>().locale,
-                  items: [
-                    DropdownMenuItem(
-                      value: LanguageManager.instance.trLocale,
-                      child: const Text("TR"),
-                    ),
-                    DropdownMenuItem(value: LanguageManager.instance.enLocale, child: const Text("EN")),
-                  ],
-                  onChanged: (value) {
-                    context.read<ThemeNotifier>().changeLanguage(value);
-                    context.setLocale(value);
-                    Get.updateLocale(value);
-                    // box.put("lang", value);
-                  },
-                )
+            DropdownButton<Locale>(
+              value: context.locale,
+              items: [
+                DropdownMenuItem(
+                  value: LanguageManager.instance.trLocale,
+                  child: Text(
+                    "TR",
+                    style: context.textTheme.headline6.copyWith(color: Colors.white),
+                  ),
+                ),
+                DropdownMenuItem(
+                    value: LanguageManager.instance.enLocale,
+                    child: Text(
+                      "EN",
+                      style: context.textTheme.headline6.copyWith(color: Colors.white),
+                    )),
+              ],
+              onChanged: (value) {
+                context.setLocale(value);
+                Get.updateLocale(value);
+                // box.put("lang", value);
+              },
+            )
           ],
         ),
       ),

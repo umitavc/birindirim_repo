@@ -1,6 +1,5 @@
 import 'package:birindirm_deneme/core/constant/enum/app_theme_enum.dart';
 import 'package:birindirm_deneme/core/init/cache/local_manager.dart';
-import 'package:birindirm_deneme/core/init/lang/language_manager.dart';
 import 'package:birindirm_deneme/core/init/theme/app_thema_light.dart';
 import 'package:birindirm_deneme/core/init/theme/app_theme_dark.dart';
 
@@ -11,8 +10,6 @@ final themeMode = Boxes.getDark();
 class ThemeNotifier extends ChangeNotifier {
   ThemeData get currentTheme => _localTheme;
   ThemeData _localTheme = themeMode.get("darkMode", defaultValue: false) ? AppThemeDark.instance.theme : AppThemeLight.instance.theme;
-  Locale _locale = LanguageManager.instance.trLocale;
-  Locale get locale => _locale;
 
   AppThemeEnum get appThemes => _appTheme;
   AppThemeEnum _appTheme = themeMode.get("darkMode", defaultValue: false) ? AppThemeEnum.dark : AppThemeEnum.light;
@@ -25,12 +22,6 @@ class ThemeNotifier extends ChangeNotifier {
       _localTheme = AppThemeLight.instance.theme;
       _appTheme = AppThemeEnum.light;
     }
-    notifyListeners();
-  }
-
-  void changeLanguage(Locale locale) {
-    _locale = locale;
-
     notifyListeners();
   }
 }

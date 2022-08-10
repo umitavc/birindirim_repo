@@ -13,7 +13,7 @@
         "share": "share to your friend"
     },
     "network_warning": {
-        "title": "Ah damn",
+        "title": "Ah damn !",
         "description": "please check your internet connection",
         "bottom": "Can't connect to internet. Please check your connection"
     }

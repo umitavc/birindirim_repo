@@ -19,13 +19,6 @@ class BodyView extends StatefulWidget {
 }
 
 class _BodyViewState extends State<BodyView> {
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-    Hive.box("theme").close();
-  }
-
   int _currenIndex = 0;
   @override
   Widget build(BuildContext context) {
