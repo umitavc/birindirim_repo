@@ -14,23 +14,22 @@ class AppThemeLight extends AppTheme with ILightTheme {
 
   @override
   ThemeData get theme => ThemeData.light().copyWith(
-        colorScheme: const ColorScheme.light().copyWith(
+      colorScheme: const ColorScheme.light().copyWith(
           primary: Colors.orange,
           onPrimary: Colors.orange,
           secondary: Colors.black,
           onSecondary: Colors.white,
-           onSurface: Colors.white,
-           onError: Colors.black
-        ),
-        textTheme: textTheme(),
-        appBarTheme: const AppBarTheme().copyWith(
-          backgroundColor: Colors.amber.shade700,
-          toolbarTextStyle: textThemeLight.headline6,
-          titleTextStyle: const TextStyle(color: Colors.white, fontSize: 20),
-          iconTheme: const IconThemeData(color: Colors.white),
-          elevation: 0,
-        ),
-      );
+          onSurface: Colors.white,
+          onError: Colors.black),
+      textTheme: textTheme(),
+      appBarTheme: const AppBarTheme().copyWith(
+        backgroundColor: Colors.amber.shade700,
+        toolbarTextStyle: textThemeLight.headline6,
+        titleTextStyle: const TextStyle(color: Colors.white, fontSize: 20),
+        iconTheme: const IconThemeData(color: Colors.white),
+        elevation: 0,
+      ),
+      canvasColor: Colors.amber.shade700);
 
   TextTheme textTheme() => TextTheme(
         bodyText1: const TextStyle(color: Colors.black),

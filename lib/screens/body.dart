@@ -1,18 +1,15 @@
 import 'package:birindirm_deneme/core/constant/enum/app_theme_enum.dart';
 import 'package:birindirm_deneme/core/init/cache/local_manager.dart';
+import 'package:birindirm_deneme/core/init/lang/locale_keys.g.dart';
 import 'package:birindirm_deneme/core/init/notifier/theme_notifier.dart';
 import 'package:birindirm_deneme/screens/coupons/view/coupons_view.dart';
 import 'package:birindirm_deneme/screens/opportunities/view/opportunities_view.dart';
-import 'package:birindirm_deneme/components/constant.dart';
-import 'package:birindirm_deneme/components/widget_card/populer_item_Card.dart';
-import 'package:birindirm_deneme/public/product.dart';
 import 'package:birindirm_deneme/screens/populer_view/view/populer_view.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
-
 import 'brands_view/view/brands_view.dart';
+import 'package:birindirm_deneme/core/constant/app/string_constant.dart';
 
 class BodyView extends StatefulWidget {
   const BodyView({Key key}) : super(key: key);
@@ -22,13 +19,20 @@ class BodyView extends StatefulWidget {
 }
 
 class _BodyViewState extends State<BodyView> {
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    Hive.box("theme").close();
+  }
+
   int _currenIndex = 0;
   @override
   Widget build(BuildContext context) {
     List<Widget> pageItems = [
       //ümit
-      PopularView(),
-      BrandsView(),
+      const PopularView(),
+      const BrandsView(),
 
       //kerem
       const OpportunitiesView(),
@@ -72,22 +76,22 @@ class _BodyViewState extends State<BodyView> {
           BottomNavigationBarItem(
             backgroundColor: context.watch<ThemeNotifier>().appThemes == AppThemeEnum.dark ? Colors.black : Colors.orange,
             icon: Text(
-              "Popüler",
+              LocaleKeys.home_popular.locale,
               style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 1),
             ),
             label: "",
           ),
           BottomNavigationBarItem(
               backgroundColor: context.watch<ThemeNotifier>().appThemes == AppThemeEnum.dark ? Colors.black : Colors.orange,
-              icon: Text("Markalar", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 1)),
+              icon: Text(LocaleKeys.home_brands.locale, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 1)),
               label: ""),
           BottomNavigationBarItem(
               backgroundColor: context.watch<ThemeNotifier>().appThemes == AppThemeEnum.dark ? Colors.black : Colors.orange,
-              icon: Text("Fırsatlar", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 1)),
+              icon: Text(LocaleKeys.home_opportunities.locale, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 1)),
               label: ""),
           BottomNavigationBarItem(
             backgroundColor: context.watch<ThemeNotifier>().appThemes == AppThemeEnum.dark ? Colors.black : Colors.orange,
-            icon: Text("Kuponlar", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 1)),
+            icon: Text(LocaleKeys.home_coupons.locale, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 1)),
             label: "",
           ),
         ],

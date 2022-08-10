@@ -1,4 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:birindirm_deneme/core/constant/app/string_constant.dart';
+import 'package:birindirm_deneme/core/init/lang/locale_keys.g.dart';
 import 'package:birindirm_deneme/core/init/network/network_change.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
@@ -42,7 +44,7 @@ class _NetworkWidgetPageState extends State<NetworkWidgetPage> {
                 ),
                 const SizedBox(width: 15),
                 Expanded(
-                    child: AutoSizeText("İnternete baglanılmıyor lütfen baglantınızı  kontrol ediniz",
+                    child: AutoSizeText(LocaleKeys.network_warning_bottom.locale,
                         style: context.textTheme.headline6.copyWith(fontSize: 16, color: context.colorScheme.onSurface))),
               ],
             )),

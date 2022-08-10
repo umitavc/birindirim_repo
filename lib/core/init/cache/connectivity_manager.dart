@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:birindirm_deneme/core/constant/app/string_constant.dart';
+import 'package:birindirm_deneme/core/init/lang/locale_keys.g.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -32,6 +34,7 @@ class ConnectivityManager {
   }
 
   Future<void> _updateConnectionStatus(ConnectivityResult result) async {
+   
     _connectionStatus = result;
     log("Connection Status: ${_connectionStatus.name}");
     if (_connectionStatus == ConnectivityResult.none) {
@@ -47,9 +50,9 @@ class ConnectivityManager {
       if (!_showError) {
         Get.defaultDialog(
           backgroundColor: Get.theme.colorScheme.onError,
-          title: 'Hay aksi !',
+          title: LocaleKeys.network_warning_title.locale,
           titleStyle: Get.theme.textTheme.headline6.copyWith(fontSize: 16, color: Get.theme.colorScheme.onSurface, fontWeight: FontWeight.bold),
-          middleText: 'lütfen internet  baglantınızı kontrol ediniz',
+          middleText: LocaleKeys.network_warning_description.locale,
           middleTextStyle: Get.textTheme.headline6.copyWith(fontSize: 16, color: Get.theme.colorScheme.onSurface),
           barrierDismissible: false,
         );

@@ -26,6 +26,7 @@ class AppThemeDark extends AppTheme with IDarkTheme {
             
             onSurface: Colors.white),
         textTheme: textTheme(),
+        canvasColor: Colors.black
       );
 
   TextTheme textTheme() {

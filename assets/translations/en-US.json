@@ -1,0 +1,20 @@
+{
+    "home": {
+        "popular": "Popular",
+        "brands": "Brands",
+        "opportunities": "Opportunities",
+        "coupons": "Coupons",
+        "language": "Change Language"
+    },
+    "drawer": {
+        "home": "Home",
+        "about": "About Us",
+        "rate": "Rate",
+        "share": "share to your friend"
+    },
+    "network_warning": {
+        "title": "Ah damn",
+        "description": "please check your internet connection",
+        "bottom": "Can't connect to internet. Please check your connection"
+    }
+}

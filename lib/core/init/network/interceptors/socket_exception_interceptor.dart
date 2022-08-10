@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:birindirm_deneme/core/constant/app/string_constant.dart';
+import 'package:birindirm_deneme/core/init/lang/locale_keys.g.dart';
 import 'package:birindirm_deneme/core/init/network_manager.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
@@ -46,12 +48,13 @@ class RetryOnConnectionChangeInterceptor extends Interceptor {
     ErrorInterceptorHandler handler,
   ) {
     if (_shouldRetry(err)) {
+      
       try {
         get_dialog.Get.defaultDialog(
         backgroundColor: get_dialog.Get.theme.colorScheme.onError,
-        title: 'Hay aksi !',
+        title: LocaleKeys.network_warning_title.locale,
         titleStyle: get_dialog.Get.theme.textTheme.headline6.copyWith(fontSize: 16, color: get_dialog.Get.theme.colorScheme.onSurface, fontWeight: FontWeight.bold),
-        middleText: 'lütfen internet  baglantınızı kontrol ediniz',
+        middleText: LocaleKeys.network_warning_description.locale,
         middleTextStyle: get_dialog.Get.textTheme.headline6.copyWith(fontSize: 16, color: get_dialog.Get.theme.colorScheme.onSurface),
         barrierDismissible: false,
       );
