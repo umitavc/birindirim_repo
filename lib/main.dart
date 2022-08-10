@@ -1,22 +1,26 @@
-import 'package:birindirm_deneme/core/constant/app/application_constant.dart';
-import 'package:birindirm_deneme/core/init/lang/language_manager.dart';
-import 'package:birindirm_deneme/core/init/locator.dart';
-import 'package:birindirm_deneme/core/init/network/interceptors/socket_exception_interceptor.dart';
-import 'package:birindirm_deneme/core/init/network_manager.dart';
-import 'package:birindirm_deneme/core/init/notifier/theme_notifier.dart';
 import 'package:birindirm_deneme/screens/coupons/view_model/coupons_view_model.dart';
 import 'package:birindirm_deneme/screens/opportunities/view_model/opportunities_view_model.dart';
 import 'package:birindirm_deneme/screens/splash_view/view/splash_view.dart';
 import 'package:birindirm_deneme/screens/splash_view/view_model/splash_view_model.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart' hide Trans;
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
-import 'core/init/network/interceptors/api_key_challange_interceptor.dart';
 
-void main() async {
+import 'components/constant.dart';
+import 'core/init/cache/connectivity_manager.dart';
+import 'core/init/lang/locale_keys.g.dart';
+import 'core/init/locator.dart';
+import 'core/init/network/interceptors/api_key_challange_interceptor.dart';
+import 'core/init/network/interceptors/socket_exception_interceptor.dart';
+import 'core/init/network_manager.dart';
+import 'core/init/notifier/theme_notifier.dart';
+
+Future<void> main() async {
   await _init();
   setupLocator();
   runApp(MultiProvider(
@@ -27,10 +31,13 @@ void main() async {
         ChangeNotifierProvider(create: (context) => ThemeNotifier()),
       ],
       child: EasyLocalization(
-          supportedLocales: LanguageManager.instance.supportLocale,
-          path: ApplicationConstant.LANG_ASSET_PATH,
-          startLocale: LanguageManager.instance.trLocale,
-          child: const MyApp())));
+          child: MyApp(),
+          supportedLocales: LocaleConstants.supported_locale,
+          //LocaleConstants.trLocale,
+          startLocale: LocaleConstants.trLocale,
+          saveLocale: true,
+          fallbackLocale: LocaleConstants.enLocale,
+          path: LocaleConstants.localePath)));
 }
 
 Future<void> _init() async {
@@ -55,11 +62,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
       theme: context.watch<ThemeNotifier>().currentTheme,
       home: const SplashView(),
     );

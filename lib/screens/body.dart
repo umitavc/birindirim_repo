@@ -8,6 +8,8 @@ import 'package:birindirm_deneme/screens/populer_view/view/populer_view.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
+
+import '../core/init/lang/locale_keys.g.dart';
 import 'brands_view/view/brands_view.dart';
 import 'package:birindirm_deneme/core/constant/app/string_constant.dart';
 
@@ -74,14 +76,8 @@ class _BodyViewState extends State<BodyView> {
             ),
             label: "",
           ),
-          BottomNavigationBarItem(
-              backgroundColor: context.watch<ThemeNotifier>().appThemes == AppThemeEnum.dark ? Colors.black : Colors.orange,
-              icon: Text(LocaleKeys.home_brands.locale, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 1)),
-              label: ""),
-          BottomNavigationBarItem(
-              backgroundColor: context.watch<ThemeNotifier>().appThemes == AppThemeEnum.dark ? Colors.black : Colors.orange,
-              icon: Text(LocaleKeys.home_opportunities.locale, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 1)),
-              label: ""),
+          BottomNavigationBarItem(backgroundColor: context.watch<ThemeNotifier>().appThemes == AppThemeEnum.dark ? Colors.black : Colors.orange, icon: Text(LocaleKeys.home_brands.locale, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 1)), label: ""),
+          BottomNavigationBarItem(backgroundColor: context.watch<ThemeNotifier>().appThemes == AppThemeEnum.dark ? Colors.black : Colors.orange, icon: Text(LocaleKeys.home_opportunities.locale, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 1)), label: ""),
           BottomNavigationBarItem(
             backgroundColor: context.watch<ThemeNotifier>().appThemes == AppThemeEnum.dark ? Colors.black : Colors.orange,
             icon: Text(LocaleKeys.home_coupons.locale, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 1)),

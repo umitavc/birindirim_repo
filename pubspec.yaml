@@ -42,6 +42,7 @@ dependencies:
   kartal: ^2.3.2
   provider: ^6.0.3
   url_launcher: ^6.1.5
+  
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -64,6 +65,7 @@ flutter:
     - assets/images/
     - assets/gif/
     - assets/translations/
+    - assets/language/
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

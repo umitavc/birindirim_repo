@@ -1,0 +1,19 @@
+{
+    
+
+    "home": {
+        "popular": "Popular",
+        "brands": "Brands",
+        "opportunities": "Opportunities",
+        "coupons": "Coupons",
+        "language": "Change Language"
+    },
+    "drawer": {
+        "home": "Home",
+        "about": "About Us",
+        "rate": "Rate",
+        "share": "share to your friend"
+    }
+
+
+ }

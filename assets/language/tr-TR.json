@@ -1,0 +1,18 @@
+
+
+{
+    "home":{
+        "popular":"Popüler",
+        "brands":"Markalar",
+        "opportunities":"Fırsatlar",
+        "coupons":"Kuponlar",
+        "language":"Dil değiştir"
+
+    },
+    "drawer": {
+        "home": "Anasayfa",
+        "about": "Hakkımızda",
+        "rate": "Değerlendir/Puan Ver",
+        "share": "Arkadaşınızla Paylaşın"
+    }
+ }

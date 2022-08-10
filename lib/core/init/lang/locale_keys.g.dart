@@ -1,6 +1,6 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-abstract class  LocaleKeys {
+abstract class LocaleKeys {
   static const home_popular = 'home.popular';
   static const home_brands = 'home.brands';
   static const home_opportunities = 'home.opportunities';
@@ -16,5 +16,4 @@ abstract class  LocaleKeys {
   static const network_warning_description = 'network_warning.description';
   static const network_warning_bottom = 'network_warning.bottom';
   static const network_warning = 'network_warning';
-
 }
