@@ -1,5 +1,7 @@
 # Bir indirim
- 
+
+![Ekran Görüntüsü (7)](https://user-images.githubusercontent.com/62944836/187245023-aa9bf84c-fa87-40dc-a3da-22fd13e70cf0.png)
+
 ![Ekran Görüntüsü (8)](https://user-images.githubusercontent.com/62944836/187245001-f177e0a0-f6ae-4c65-b369-9bf6703c9575.png)
 
 ![Ekran Görüntüsü (9)](https://user-images.githubusercontent.com/62944836/187245006-8011717c-1185-41b3-b097-1a964fa81c60.png)
@@ -10,4 +12,4 @@
 
 ![Ekran Görüntüsü (12)](https://user-images.githubusercontent.com/62944836/187245018-e25e89b4-5d08-4a09-aa7c-22459e8a09c6.png)
 
-![Ekran Görüntüsü (7)](https://user-images.githubusercontent.com/62944836/187245023-aa9bf84c-fa87-40dc-a3da-22fd13e70cf0.png)
+
