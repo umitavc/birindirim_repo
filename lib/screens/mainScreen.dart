@@ -19,20 +19,6 @@ class MainScreens extends StatelessWidget {
           title: Text("Birindirim"),
           centerTitle: true,
           actions: [
-            TextButton(
-                onPressed: () {
-                  context.setLocale(LocaleConstants.trLocale);
-                  Get.updateLocale(LocaleConstants.trLocale);
-                },
-                style: TextButton.styleFrom(primary: Colors.white),
-                child: Text("tr")),
-            TextButton(
-                onPressed: () {
-                  context.setLocale(LocaleConstants.enLocale);
-                  Get.updateLocale(LocaleConstants.enLocale);
-                },
-                style: TextButton.styleFrom(primary: Colors.white),
-                child: Text("en"))
           ],
         ),
       ),
